@@ -82,7 +82,8 @@ body {
     margin-bottom : 15px;
 
 }
-.list-pokemon__h4{
+
+.list-pokemon__h4 {
     margin-bottom: 10px;
 }
 
@@ -95,36 +96,37 @@ body {
 }
 
 .list-pokemon__ul li {
-    display     : block;
-    font-family : 'Lato', sans-serif;
-    font-weight : 400;
-    font-size   : 1.6em;
-    line-height : 1.4em;
-    padding     : 5px;
-    margin-left : 2%;
-    margin-right: 2%;
-    color       : #02A1E9;
-    text-align  : left;
-   
+    display      : block;
+    font-family  : 'Lato', sans-serif;
+    font-weight  : 400;
+    font-size    : 1.6em;
+    line-height  : 1.4em;
+    padding      : 5px;
+    margin-left  : 2%;
+    margin-right : 2%;
+    color        : #02A1E9;
+    text-align   : left;
+    border-bottom: 1px solid #02A1E9;
 }
 
-.button-list{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
+.button-list {
+    display        : flex;
+    flex-direction : row;
+    flex-wrap      : wrap;
+    width          : 100%;
     justify-content: space-around;
-    margin-top: 15px;
+    margin-top     : 15px;
 }
-.button{
-   padding: 10px 25px;
-    border-radius: 10px;
-    border: 2px solid #454342;
-    font-family:'Lato', sans-serif;
-    font-weight: 400;
-    font-size: 1.4em;
-    background-color:#02A1E9 ;
-    color: #ffffff;
-    margin-bottom: 50px;
-   
+
+.button {
+    padding         : 10px 25px;
+    border-radius   : 10px;
+    border          : 2px solid #454342;
+    font-family     : 'Lato', sans-serif;
+    font-weight     : 400;
+    font-size       : 1.4em;
+    background-color: #02A1E9;
+    color           : #ffffff;
+    margin-bottom   : 50px;
+
 }
