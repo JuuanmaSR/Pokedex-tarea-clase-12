@@ -81,3 +81,36 @@ function ocultarBotonAnterior(previous) {
         $anterior.className = `button oculto`;
     };
 };
+
+//** Manejar clicks en la lista**/
+function manejarEventos() {
+    let $lista = document.querySelector(`.list-pokemon__ul`);
+    let namePokemon;
+
+    $lista.onclick = function (e) {
+        const $elemento = e.target;
+
+        if ($elemento.classList.contains(`pokemon`)) {
+            namePokemon = $elemento.id;
+            console.log(namePokemon);
+
+            mostrarPokemonSeleccionado(namePokemon);
+        }
+    };
+};
+manejarEventos();
+//**Obtener caracteristicas de pokemon seleccionado y mostrarlas**/
+function mostrarPokemonSeleccionado(namePokemon){
+    let urlPictureFrontPokemon;
+    let urlPictureBackPokemon;
+    let heightPokemon;
+    fetch(`https://pokeapi.co/api/v2/pokemon/${namePokemon}`)
+                .then(respuesta => respuesta.json())
+                .then(respuestaJSON => {
+                    console.log(respuestaJSON)
+                    urlPictureFrontPokemon = respuestaJSON.sprites[`front_default`];
+                    urlPictureBackPokemon = respuestaJSON.sprites[`back_default`];
+                    heightPokemon = respuestaJSON.height;
+                    console.log(urlPictureFrontPokemon, urlPictureBackPokemon,heightPokemon);
+                });
+};
