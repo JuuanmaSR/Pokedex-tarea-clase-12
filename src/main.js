@@ -100,17 +100,26 @@ function manejarEventos() {
 };
 manejarEventos();
 //**Obtener caracteristicas de pokemon seleccionado y mostrarlas**/
-function mostrarPokemonSeleccionado(namePokemon){
+function mostrarPokemonSeleccionado(namePokemon) {
+    let nombrePokemon = namePokemon;
+    let idPokemon;
     let urlPictureFrontPokemon;
     let urlPictureBackPokemon;
     let heightPokemon;
+    let weightPokemon;
     fetch(`https://pokeapi.co/api/v2/pokemon/${namePokemon}`)
-                .then(respuesta => respuesta.json())
-                .then(respuestaJSON => {
-                    console.log(respuestaJSON)
-                    urlPictureFrontPokemon = respuestaJSON.sprites[`front_default`];
-                    urlPictureBackPokemon = respuestaJSON.sprites[`back_default`];
-                    heightPokemon = respuestaJSON.height;
-                    console.log(urlPictureFrontPokemon, urlPictureBackPokemon,heightPokemon);
-                });
+        .then(respuesta => respuesta.json())
+        .then(respuestaJSON => {
+            console.log(respuestaJSON)
+            idPokemon = respuestaJSON.id;
+            urlPictureFrontPokemon = respuestaJSON.sprites[`front_default`];
+            urlPictureBackPokemon = respuestaJSON.sprites[`back_default`];
+            heightPokemon = respuestaJSON.height;
+            weightPokemon = respuestaJSON.weight;
+            console.log(urlPictureFrontPokemon, urlPictureBackPokemon, heightPokemon, nombrePokemon, idPokemon, weightPokemon);
+        });
+};
+
+function mostrarCaracteristicasPokemon(){
+
 };

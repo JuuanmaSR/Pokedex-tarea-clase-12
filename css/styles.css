@@ -59,8 +59,6 @@ body {
     flex-direction: column;
     width         : 100%;
     margin-top    : 120px;
-    align-items   : center;
-
 }
 
 .list-pokemon {
@@ -129,4 +127,53 @@ body {
     color           : #ffffff;
     margin-bottom   : 50px;
 
+}
+
+.container-pokemon {
+    display       : flex;
+    flex-wrap     : wrap;
+    flex-direction: column;
+    width         : 100%;
+    margin-bottom : 200px;
+}
+
+.mostrar-pokemon {
+    background-color: #454342;
+    border-radius   : 5px;
+    box-shadow      : 0px 0px 5px black;
+    margin          : 5%;
+}
+
+.mostrar-pokemon__header {
+    display        : flex;
+    flex-direction : row;
+    flex-wrap      : wrap;
+    overflow       : hidden;
+    width          : 100%;
+    justify-content: space-around;
+    align-items    : baseline;
+    font-family    : 'Lato', sans-serif;
+    font-weight    : 700;
+    color          : #DC0A2D;
+    text-transform : uppercase;
+    font-size      : 2em;
+    text-shadow    : 0px 1px 2px black;
+    padding        : 10px;
+}
+
+.mostrar-pokemon__header p:first-of-type {
+    border-right : 3px solid #DFDFDF;
+    padding-right: 5px;
+}
+
+.mostrar-pokemon-img{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+.mostrar-pokemon-img img{
+    border: 2px solid #DFDFDF;
+    border-radius: 50px;
+    box-shadow: 0px 0px 5px #000000;
 }
