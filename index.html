@@ -14,7 +14,7 @@
 
 <body>
     <div class="page">
-        <header>
+        <header id="inicio">
             <div class="header">
 
                 <div class="header-img">
@@ -37,29 +37,32 @@
             </div>
         </article>
 
-        <article class="container-pokemon">
+        <article id="resultadoPokemon" class="oculto container-pokemon">
             <div class="mostrar-pokemon">
                 <header>
                     <div class="mostrar-pokemon__header">
-                        <p>Pikachu</p>
-                        <p>Nº200</p>
+                        <p class="mostrar-pokemon__header-p-name"></p>
+                        <p class="mostrar-pokemon__header-p-id"></p>
                     </div>
                 </header>
 
                 <div class="mostrar-pokemon-img">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/20.png" alt="raticate.front">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/20.png" alt="raticate-back">
+                    <img class="mostrar-pokemon-img__front" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/20.png" alt="raticate.front">
+                    <img class="mostrar-pokemon-img__back" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/20.png" alt="raticate-back">
                 </div>
                 <div class="mostrar-pokemon-datos">
                     <div class="mostrar-pokemon-datos__altura">
-                        Altura <p>8 m</p>
+                        Altura <p class="mostrar-pokemon-datos__altura-p">8 m</p>
                     </div>
                     <div class="mostrar-pokemon-datos__peso">
-                        Peso <p>69 kg</p>
+                        Peso <p class="mostrar-pokemon-datos__peso-p">69 kg</p>
                     </div>
                 </div>
             </div>
         </article>
+        <div class="buttongotop">
+            <a href="#inicio"><img src="images/arrow_upward_black_24dp.svg" alt="arrow-up"></a>
+        </div>
     </div>
     <script src="src/main.js"></script>
 </body>

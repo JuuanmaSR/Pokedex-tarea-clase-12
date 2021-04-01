@@ -37,8 +37,9 @@ function crearSiguienteListaPokemon() {
                 borrarLista();
                 crearListaPokemones();
                 mostrarBotonAnterior();
-
             });
+
+
     }
 };
 crearSiguienteListaPokemon();
@@ -92,34 +93,52 @@ function manejarEventos() {
 
         if ($elemento.classList.contains(`pokemon`)) {
             namePokemon = $elemento.id;
-            console.log(namePokemon);
-
-            mostrarPokemonSeleccionado(namePokemon);
+            datosPokemonSeleccionado(namePokemon);
+            mostrarResultadoPokemon();
         }
     };
 };
 manejarEventos();
 //**Obtener caracteristicas de pokemon seleccionado y mostrarlas**/
-function mostrarPokemonSeleccionado(namePokemon) {
+function datosPokemonSeleccionado(namePokemon) {
     let nombrePokemon = namePokemon;
     let idPokemon;
     let urlPictureFrontPokemon;
     let urlPictureBackPokemon;
-    let heightPokemon;
-    let weightPokemon;
+    let heightPokemon = ``;
+    let weightPokemon = ``;
     fetch(`https://pokeapi.co/api/v2/pokemon/${namePokemon}`)
         .then(respuesta => respuesta.json())
         .then(respuestaJSON => {
-            console.log(respuestaJSON)
             idPokemon = respuestaJSON.id;
             urlPictureFrontPokemon = respuestaJSON.sprites[`front_default`];
             urlPictureBackPokemon = respuestaJSON.sprites[`back_default`];
             heightPokemon = respuestaJSON.height;
             weightPokemon = respuestaJSON.weight;
-            console.log(urlPictureFrontPokemon, urlPictureBackPokemon, heightPokemon, nombrePokemon, idPokemon, weightPokemon);
+            aplicarCaracteristicasPokemon(nombrePokemon, idPokemon, urlPictureFrontPokemon, urlPictureBackPokemon, heightPokemon, weightPokemon);
         });
 };
 
-function mostrarCaracteristicasPokemon(){
+function aplicarCaracteristicasPokemon(name, id, imgFront, imgBack, height, weight) {
+    let elementNombre = document.querySelector(`.mostrar-pokemon__header-p-name`);
+    let elementId = document.querySelector(`.mostrar-pokemon__header-p-id`);
+    let elementImgFront = document.querySelector(`.mostrar-pokemon-img__front`);
+    let elementImgBack = document.querySelector(`.mostrar-pokemon-img__back`);
+    let elementHeight = document.querySelector(`.mostrar-pokemon-datos__altura-p`);
+    let elementWeight = document.querySelector(`.mostrar-pokemon-datos__peso-p`);
 
+    elementNombre.textContent = name;
+    elementId.textContent = `Nº${id}`;
+    elementImgFront.src = imgFront;
+    elementImgBack.src = imgBack;
+    elementHeight.textContent = `${height}`;
+    elementWeight.textContent = `${weight}`;
+
+};
+
+
+function mostrarResultadoPokemon() {
+    let resultadoPokemon = document.querySelector(`#resultadoPokemon`);
+    resultadoPokemon.className = `container-pokemon`;
+    
 };
