@@ -12,7 +12,7 @@ function crearListaPokemones() {
             Object.keys(respuestaJSON.results).forEach(key => {
                 let newLi = document.createElement(`li`);
                 newLi.textContent = respuestaJSON.results[key].name;
-
+                newLi.className = respuestaJSON.results[key].name;
                 listaPokemones.appendChild(newLi)
             })
             
