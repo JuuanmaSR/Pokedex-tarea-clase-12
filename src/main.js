@@ -96,7 +96,7 @@ function manejarEventos() {
             datosPokemonSeleccionado(namePokemon);
             mostrarResultadoPokemon();
             window.scroll({
-                top: 750,
+                top: 800,
                 left: 750,
                 behavior: 'smooth'
               });
