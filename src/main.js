@@ -95,6 +95,11 @@ function manejarEventos() {
             namePokemon = $elemento.id;
             datosPokemonSeleccionado(namePokemon);
             mostrarResultadoPokemon();
+            window.scroll({
+                top: 750,
+                left: 750,
+                behavior: 'smooth'
+              });
         }
     };
 };
