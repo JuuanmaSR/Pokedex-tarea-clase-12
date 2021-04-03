@@ -76,7 +76,9 @@ body {
     font-size    : 18px;
     margin-bottom: 10px;
 }
-
+.list-pokemon__a{
+    text-decoration: none;
+}
 .list-pokemon__ul {
     display        : flex;
     flex-wrap      : wrap;

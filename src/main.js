@@ -95,11 +95,7 @@ function manejarEventos() {
             namePokemon = $elemento.id;
             datosPokemonSeleccionado(namePokemon);
             mostrarResultadoPokemon();
-            window.scroll({
-                top: 800,
-                left: 750,
-                behavior: 'smooth'
-              });
+         
         }
     };
 };
@@ -143,7 +139,7 @@ function aplicarCaracteristicasPokemon(name, id, imgFront, imgBack, height, weig
 
 
 function mostrarResultadoPokemon() {
-    let resultadoPokemon = document.querySelector(`#resultadoPokemon`);
+    let resultadoPokemon = document.querySelector(`#resultado-pokemon`);
     resultadoPokemon.className = `container-pokemon`;
     
 };
