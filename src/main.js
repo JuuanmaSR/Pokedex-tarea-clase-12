@@ -3,18 +3,23 @@ let urlBase = `https://pokeapi.co/api/v2/pokemon`
 
 function crearListaPokemones() {
     let listaPokemones = document.querySelector(`.list-pokemon__ul`);
-
+    
     fetch(urlBase)
         .then(respuesta => respuesta.json())
         .then(respuestaJSON => {
 
 
             Object.keys(respuestaJSON.results).forEach(key => {
+                let newAelement = document.createElement(`a`);
+                newAelement.className= `list-pokemon__a`;
+                newAelement.href = `#resultado-pokemon`;
+
                 let newLi = document.createElement(`li`);
                 newLi.textContent = respuestaJSON.results[key].name;
                 newLi.id = respuestaJSON.results[key].name;
                 newLi.className = `pokemon`;
-                listaPokemones.appendChild(newLi);
+                newAelement.appendChild(newLi);
+                listaPokemones.appendChild(newAelement);
             });
 
             ocultarBotonAnterior(respuestaJSON.previous);

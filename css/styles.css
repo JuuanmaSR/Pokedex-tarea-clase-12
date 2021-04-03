@@ -79,6 +79,7 @@ body {
 .list-pokemon__a{
     text-decoration: none;
 }
+
 .list-pokemon__ul {
     display        : flex;
     flex-wrap      : wrap;
@@ -99,6 +100,9 @@ body {
     color        : #02A1E9;
     text-align   : left;
     border-bottom: 1px solid #02A1E9;
+}
+.list-pokemon__ul li:active{
+    color:#96d6f2 ;
 }
 
 .button-list {
