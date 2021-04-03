@@ -51,6 +51,7 @@ body {
     flex-direction: column;
     width         : 100%;
     margin-top    : 120px;
+    overflow      : hidden;
 }
 
 .list-pokemon {
@@ -163,14 +164,16 @@ body {
 }
 
 .mostrar-pokemon-img img {
-    
-    border-radius: 50px;
+
+    border-radius   : 50px;
     background-color: #ffffff;
-    box-shadow   : 0px 0px 5px #000000;
+    box-shadow      : 0px 0px 5px #000000;
 }
-html{
+
+html {
     scroll-behavior: smooth;
 }
+
 .mostrar-pokemon-datos {
     display         : flex;
     flex-direction  : row;
@@ -188,27 +191,76 @@ html{
     align-items   : center;
     padding       : 5px;
     color         : #ffff00;
-    font-weight: 700;
+    font-weight   : 700;
 }
 
 .mostrar-pokemon-datos p {
     color: #f5f0f0;
 }
 
-.buttongotop img{
-    display: flex;
-    align-content: center;
-    position: fixed;
-    bottom: 50px;
-    right: 5px;
+.buttongotop img {
+    display         : flex;
+    align-content   : center;
+    position        : fixed;
+    bottom          : 50px;
+    right           : 5px;
     background-color: #ffffff;
-    padding: 15px 15px;
-    border-radius: 50px;
-    box-shadow: 0px 0px 5px #000000;
+    padding         : 15px 15px;
+    border-radius   : 50px;
+    box-shadow      : 0px 0px 5px #000000;
+}
+
+.footer-content {
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    background-color: #454342;
+    height          : 50px;
+    color           : #ffffff;
+    font-size       : 1.5em;
+    
 }
 
 @media only screen and (min-width: 961px) {
-    .buttongotop img:hover{
+    .list-pokemon__ul {
+        flex-direction: row;
+        margin        : 0px 15px;
+    }
+
+    .list-pokemon__ul li {
+        text-align   : left;
+        margin       : 2.2%;
+        border-bottom: none;
+        cursor       : pointer;
+        font-size: 2.5em;
+    }
+
+    .button{
+        padding: 20px 35px;
+        font-size: 2em;
+    }
+
+    .container-pokemon {
+        font-size: 1.9em;
+
+    }
+    .mostrar-pokemon-img{
+        margin: 20px auto;
+    }
+    .mostrar-pokemon-datos{
+       margin: 60px auto;
+    }
+
+    .mostrar-pokemon__header-p-id{
+        margin-right: 30px;
+    }
+    .container-footer{
+        margin-top: 0;
+    }
+    .buttongotop img{
+        right: 10px;
+    }
+    .buttongotop img:hover {
         background-color: #02A1E9;
     }
 }
