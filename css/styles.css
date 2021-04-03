@@ -45,7 +45,7 @@ body {
     margin: 4px auto;
 }
 
-.container {
+.container-list-pokemon {
     display       : flex;
     flex-wrap     : wrap;
     flex-direction: column;
