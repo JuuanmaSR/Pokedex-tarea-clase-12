@@ -76,7 +76,8 @@ body {
     font-size    : 18px;
     margin-bottom: 10px;
 }
-.list-pokemon__a{
+
+.list-pokemon__a {
     text-decoration: none;
 }
 
@@ -101,8 +102,9 @@ body {
     text-align   : left;
     border-bottom: 1px solid #02A1E9;
 }
-.list-pokemon__ul li:active{
-    color:#96d6f2 ;
+
+.list-pokemon__ul li:active {
+    color: #96d6f2;
 }
 
 .button-list {
@@ -224,25 +226,26 @@ html {
     height          : 50px;
     color           : #ffffff;
     font-size       : 1.5em;
-    
 }
 
 @media only screen and (min-width: 961px) {
     .list-pokemon__ul {
-        flex-direction: row;
+        flex-direction: column;
+        align-items   : center;
+        text-align: left;
+        height        : 500px;
         margin        : 0px 15px;
     }
 
     .list-pokemon__ul li {
-        text-align   : left;
-        margin       : 2.2%;
+        margin-bottom: 10px;
         border-bottom: none;
         cursor       : pointer;
-        font-size: 2.5em;
+        font-size    : 2.3em;
     }
 
-    .button{
-        padding: 20px 35px;
+    .button {
+        padding  : 20px 35px;
         font-size: 2em;
     }
 
@@ -250,22 +253,27 @@ html {
         font-size: 1.9em;
 
     }
-    .mostrar-pokemon-img{
+
+    .mostrar-pokemon-img {
         margin: 20px auto;
     }
-    .mostrar-pokemon-datos{
-       margin: 60px auto;
+
+    .mostrar-pokemon-datos {
+        margin: 60px auto;
     }
 
-    .mostrar-pokemon__header-p-id{
+    .mostrar-pokemon__header-p-id {
         margin-right: 30px;
     }
-    .container-footer{
+
+    .container-footer {
         margin-top: 0;
     }
-    .buttongotop img{
+
+    .buttongotop img {
         right: 10px;
     }
+
     .buttongotop img:hover {
         background-color: #02A1E9;
     }
