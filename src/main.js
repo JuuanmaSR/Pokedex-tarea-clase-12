@@ -1,4 +1,11 @@
-let urlBase = 'https://pokeapi.co/api/v2/pokemon';
+function manejarLista(){
+  let urlBase = 'https://pokeapi.co/api/v2/pokemon';
+
+  crearListaPokemones(urlBase);
+  crearSiguienteListaPokemon(urlBase);
+  volverAnteriorListaPokemon(urlBase);
+}
+manejarLista();
 
 function ocultarBotonAnterior(previous) {
   const $anterior = document.querySelector('#boton-anterior-list');
@@ -7,7 +14,7 @@ function ocultarBotonAnterior(previous) {
   }
 }
 
-function crearListaPokemones() {
+function crearListaPokemones(urlBase) {
   const listaPokemones = document.querySelector('.list-pokemon__ul');
 
   fetch(urlBase)
@@ -29,7 +36,7 @@ function crearListaPokemones() {
       ocultarBotonAnterior(respuestaJSON.previous);
     });
 }
-crearListaPokemones();
+
 
 function mostrarBotonAnterior() {
   const $anterior = document.querySelector('#boton-anterior-list');
@@ -46,7 +53,7 @@ function borrarLista() {
 }
 
 //* *BOTON ANTERIOR**/
-function volverAnteriorListaPokemon() {
+function volverAnteriorListaPokemon(urlBase) {
   const $anterior = document.querySelector('#boton-anterior-list');
 
   $anterior.onclick = () => {
@@ -55,14 +62,14 @@ function volverAnteriorListaPokemon() {
       .then((respuestaJSON) => {
         urlBase = respuestaJSON.previous;
         borrarLista();
-        crearListaPokemones();
+        crearListaPokemones(urlBase);
       });
   };
 }
-volverAnteriorListaPokemon();
+
 
 //* BOTON-SIGUIENTE*//
-function crearSiguienteListaPokemon() {
+function crearSiguienteListaPokemon(urlBase) {
   const $siguiente = document.querySelector('#boton-siguiente-list');
 
   $siguiente.onclick = () => {
@@ -71,12 +78,12 @@ function crearSiguienteListaPokemon() {
       .then((respuestaJSON) => {
         urlBase = (respuestaJSON.next);
         borrarLista();
-        crearListaPokemones();
+        crearListaPokemones(urlBase);
         mostrarBotonAnterior();
       });
   };
 }
-crearSiguienteListaPokemon();
+
 
 //* *Obtener caracteristicas de pokemon seleccionado y mostrarlas**/
 function aplicarDatosPokemonSeleccionado(name, id, imgFront, imgBack, height, weight) {
