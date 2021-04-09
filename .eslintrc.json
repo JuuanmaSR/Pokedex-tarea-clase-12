@@ -12,7 +12,7 @@
     "rules": {
         "linebreak-style": 0 
     },
-    "[havascript]" :{
+    "[javascript]" :{
         "editor.defaultFormatter":"dbaeumer.vscode-eslint"
     }
 }
