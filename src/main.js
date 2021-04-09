@@ -1,9 +1,8 @@
+let urlBase = 'https://pokeapi.co/api/v2/pokemon';
 function manejarLista(){
-  let urlBase = 'https://pokeapi.co/api/v2/pokemon';
-
-  crearListaPokemones(urlBase);
-  crearSiguienteListaPokemon(urlBase);
-  volverAnteriorListaPokemon(urlBase);
+  crearListaPokemones();
+  crearSiguienteListaPokemon();
+  volverAnteriorListaPokemon();
 }
 manejarLista();
 
@@ -14,7 +13,7 @@ function ocultarBotonAnterior(previous) {
   }
 }
 
-function crearListaPokemones(urlBase) {
+function crearListaPokemones() {
   const listaPokemones = document.querySelector('.list-pokemon__ul');
 
   fetch(urlBase)
@@ -53,7 +52,7 @@ function borrarLista() {
 }
 
 //* *BOTON ANTERIOR**/
-function volverAnteriorListaPokemon(urlBase) {
+function volverAnteriorListaPokemon() {
   const $anterior = document.querySelector('#boton-anterior-list');
 
   $anterior.onclick = () => {
@@ -62,14 +61,14 @@ function volverAnteriorListaPokemon(urlBase) {
       .then((respuestaJSON) => {
         urlBase = respuestaJSON.previous;
         borrarLista();
-        crearListaPokemones(urlBase);
+        crearListaPokemones();
       });
   };
 }
 
 
 //* BOTON-SIGUIENTE*//
-function crearSiguienteListaPokemon(urlBase) {
+function crearSiguienteListaPokemon() {
   const $siguiente = document.querySelector('#boton-siguiente-list');
 
   $siguiente.onclick = () => {
@@ -78,7 +77,7 @@ function crearSiguienteListaPokemon(urlBase) {
       .then((respuestaJSON) => {
         urlBase = (respuestaJSON.next);
         borrarLista();
-        crearListaPokemones(urlBase);
+        crearListaPokemones();
         mostrarBotonAnterior();
       });
   };
