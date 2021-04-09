@@ -1,41 +1,12 @@
-let urlBase = 'https://pokeapi.co/api/v2/pokemon';
+import { mostrarListaPokemones } from "./ui.js";
+
+export let urlBase = 'https://pokeapi.co/api/v2/pokemon';
 function manejarLista(){
-  crearListaPokemones();
+  mostrarListaPokemones();
   crearSiguienteListaPokemon();
   volverAnteriorListaPokemon();
 }
 manejarLista();
-
-function ocultarBotonAnterior(previous) {
-  const $anterior = document.querySelector('#boton-anterior-list');
-  if (previous === null) {
-    $anterior.className = 'button oculto';
-  }
-}
-
-function crearListaPokemones() {
-  const listaPokemones = document.querySelector('.list-pokemon__ul');
-
-  fetch(urlBase)
-    .then((respuesta) => respuesta.json())
-    .then((respuestaJSON) => {
-      Object.keys(respuestaJSON.results).forEach((key) => {
-        const newAelement = document.createElement('a');
-        newAelement.className = 'list-pokemon__a';
-        newAelement.href = '#resultado-pokemon';
-
-        const newLi = document.createElement('li');
-        newLi.textContent = respuestaJSON.results[key].name;
-        newLi.id = respuestaJSON.results[key].name;
-        newLi.className = 'pokemon';
-        newAelement.appendChild(newLi);
-        listaPokemones.appendChild(newAelement);
-      });
-
-      ocultarBotonAnterior(respuestaJSON.previous);
-    });
-}
-
 
 function mostrarBotonAnterior() {
   const $anterior = document.querySelector('#boton-anterior-list');
@@ -55,13 +26,13 @@ function borrarLista() {
 function volverAnteriorListaPokemon() {
   const $anterior = document.querySelector('#boton-anterior-list');
 
-  $anterior.onclick = () => {
+  $anterior.onclick =() => {
     fetch(urlBase)
       .then((respuesta) => respuesta.json())
       .then((respuestaJSON) => {
         urlBase = respuestaJSON.previous;
         borrarLista();
-        crearListaPokemones();
+        mostrarListaPokemones();
       });
   };
 }
@@ -77,7 +48,7 @@ function crearSiguienteListaPokemon() {
       .then((respuestaJSON) => {
         urlBase = (respuestaJSON.next);
         borrarLista();
-        crearListaPokemones();
+        mostrarListaPokemones();
         mostrarBotonAnterior();
       });
   };
