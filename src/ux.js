@@ -1,11 +1,12 @@
-let urlBase = 'https://pokeapi.co/api/v2/pokemon';
 import {
   ocultarBotonAnterior,
-   mostrarListaPokemones,
-   mostrarBotonAnterior,
-   borrarLista,
-  mostrarResultadoPokemon
-} from "./ui.js";
+  mostrarListaPokemones,
+  mostrarBotonAnterior,
+  borrarLista,
+  mostrarResultadoPokemon,
+} from './ui.js';
+
+let urlBase = 'https://pokeapi.co/api/v2/pokemon';
 
 export function crearListaPokemones() {
   const listaPokemones = document.querySelector('.list-pokemon__ul');
@@ -27,9 +28,8 @@ export function crearListaPokemones() {
       });
 
       if (respuestaJSON.previous === null) {
-        ocultarBotonAnterior()
+        ocultarBotonAnterior();
       }
-      
     });
 }
 
@@ -40,10 +40,12 @@ function crearSiguienteListaPokemon() {
     fetch(urlBase)
       .then((respuesta) => respuesta.json())
       .then((respuestaJSON) => {
-        urlBase = (respuestaJSON.next);
-        borrarLista();
-        mostrarListaPokemones();
-        mostrarBotonAnterior();
+        if (respuestaJSON.next != null) {
+          urlBase = (respuestaJSON.next);
+          borrarLista();
+          crearListaPokemones();
+          mostrarBotonAnterior();
+        }
       });
   };
 }
@@ -51,7 +53,7 @@ function crearSiguienteListaPokemon() {
 function crearAnteriorListaPokemon() {
   const $anterior = document.querySelector('#boton-anterior-list');
 
-  $anterior.onclick =() => {
+  $anterior.onclick = () => {
     fetch(urlBase)
       .then((respuesta) => respuesta.json())
       .then((respuestaJSON) => {
@@ -96,7 +98,7 @@ function obtenerDatosPokemonSeleccionado(namePokemon) {
         urlPictureFrontPokemon, urlPictureBackPokemon, heightPokemon, weightPokemon);
     });
 }
-export function manejarBotonera(){
+export function manejarBotonera() {
   crearSiguienteListaPokemon();
   crearAnteriorListaPokemon();
 }
@@ -111,6 +113,6 @@ export function manejarClicks() {
       namePokemon = $elemento.id;
       obtenerDatosPokemonSeleccionado(namePokemon);
       mostrarResultadoPokemon();
-    };
+    }
   };
 }
