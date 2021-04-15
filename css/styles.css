@@ -249,6 +249,10 @@ html {
         font-size: 2em;
     }
 
+    .button:hover{
+        background-color: #76c7ec;
+    }
+    
     .container-pokemon {
         font-size: 1.9em;
 
