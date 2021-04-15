@@ -43,7 +43,7 @@ function crearSiguienteListaPokemon() {
         if (respuestaJSON.next != null) {
           urlBase = (respuestaJSON.next);
           borrarLista();
-          crearListaPokemones();
+          mostrarListaPokemones();
           mostrarBotonAnterior();
         }
       });
