@@ -1,6 +1,5 @@
 import {
   ocultarBotonAnterior,
-  mostrarListaPokemones,
   mostrarBotonAnterior,
   borrarLista,
   mostrarResultadoPokemon,
@@ -43,7 +42,7 @@ function crearSiguienteListaPokemon() {
         if (respuestaJSON.next != null) {
           urlBase = (respuestaJSON.next);
           borrarLista();
-          mostrarListaPokemones();
+          crearListaPokemones();
           mostrarBotonAnterior();
         }
       });
@@ -59,7 +58,7 @@ function crearAnteriorListaPokemon() {
       .then((respuestaJSON) => {
         urlBase = respuestaJSON.previous;
         borrarLista();
-        mostrarListaPokemones();
+        crearListaPokemones();
       });
   };
 }
