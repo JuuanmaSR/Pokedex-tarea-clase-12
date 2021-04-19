@@ -1,3 +1,6 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-cycle */
+import { guardarListaPokemones, analizarLocalStorage, crearListaPokemonesStorage } from './localStorage.js';
 import {
   ocultarBotonAnterior,
   mostrarBotonAnterior,
@@ -17,6 +20,17 @@ export function crearListaPokemones() {
         const newAelement = document.createElement('a');
         newAelement.className = 'list-pokemon__a';
         newAelement.href = '#resultado-pokemon';
+  if (analizarLocalStorage(indiceLista)) {
+    const keyLista = JSON.parse(localStorage.getItem(`listaPokemones__${indiceLista}`));
+    crearListaPokemonesStorage(keyLista, listaPokemones);
+  } else {
+    fetch(urlBase)
+      .then((respuesta) => respuesta.json())
+      .then((respuestaJSON) => {
+        Object.keys(respuestaJSON.results).forEach((key) => {
+          const nombrePokemon = respuestaJSON.results[key].name;
+          // localStorage //
+          listaStoragePokemones.push(nombrePokemon);
 
         const newLi = document.createElement('li');
         newLi.textContent = respuestaJSON.results[key].name;
@@ -25,11 +39,30 @@ export function crearListaPokemones() {
         newAelement.appendChild(newLi);
         listaPokemones.appendChild(newAelement);
       });
+          const newAelement = document.createElement('a');
+          newAelement.className = 'list-pokemon__a';
+          newAelement.href = '#resultado-pokemon';
 
       if (respuestaJSON.previous === null) {
         ocultarBotonAnterior();
       }
     });
+          const newLi = document.createElement('li');
+          newLi.textContent = nombrePokemon;
+          newLi.id = nombrePokemon;
+          newLi.className = 'pokemon';
+          newAelement.appendChild(newLi);
+          listaPokemones.appendChild(newAelement);
+
+          // localStorage //
+          guardarListaPokemones(listaStoragePokemones, indiceLista);
+        });
+
+        if (respuestaJSON.previous === null) {
+          ocultarBotonAnterior();
+        }
+      });
+  }
 }
 
 function crearSiguienteListaPokemon() {
