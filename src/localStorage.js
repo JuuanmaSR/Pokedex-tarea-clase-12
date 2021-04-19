@@ -19,3 +19,20 @@ export function analizarLocalStorage(indice) {
   return false;
 }
 
+export function crearListaPokemonesStorage(pokemones, dondeMostrarPokemones) {
+  const listaPokemones = pokemones;
+  for (let i = 0; i < listaPokemones.length; i += 1) {
+    const nombrePokemon = listaPokemones[i];
+
+    const newAelement = document.createElement('a');
+    newAelement.className = 'list-pokemon__a';
+    newAelement.href = '#resultado-pokemon';
+
+    const newLi = document.createElement('li');
+    newLi.textContent = nombrePokemon;
+    newLi.id = nombrePokemon;
+    newLi.className = 'pokemon';
+    newAelement.appendChild(newLi);
+    dondeMostrarPokemones.appendChild(newAelement);
+  }
+}
