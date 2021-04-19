@@ -15,13 +15,6 @@ let listaStoragePokemones = [];
 export function crearListaPokemones() {
   const listaPokemones = document.querySelector('.list-pokemon__ul');
 
-  fetch(urlBase)
-    .then((respuesta) => respuesta.json())
-    .then((respuestaJSON) => {
-      Object.keys(respuestaJSON.results).forEach((key) => {
-        const newAelement = document.createElement('a');
-        newAelement.className = 'list-pokemon__a';
-        newAelement.href = '#resultado-pokemon';
   if (analizarLocalStorage(indiceLista)) {
     const keyLista = JSON.parse(localStorage.getItem(`listaPokemones__${indiceLista}`));
     crearListaPokemonesStorage(keyLista, listaPokemones);
@@ -34,21 +27,10 @@ export function crearListaPokemones() {
           // localStorage //
           listaStoragePokemones.push(nombrePokemon);
 
-        const newLi = document.createElement('li');
-        newLi.textContent = respuestaJSON.results[key].name;
-        newLi.id = respuestaJSON.results[key].name;
-        newLi.className = 'pokemon';
-        newAelement.appendChild(newLi);
-        listaPokemones.appendChild(newAelement);
-      });
           const newAelement = document.createElement('a');
           newAelement.className = 'list-pokemon__a';
           newAelement.href = '#resultado-pokemon';
 
-      if (respuestaJSON.previous === null) {
-        ocultarBotonAnterior();
-      }
-    });
           const newLi = document.createElement('li');
           newLi.textContent = nombrePokemon;
           newLi.id = nombrePokemon;
