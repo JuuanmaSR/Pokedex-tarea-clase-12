@@ -7,3 +7,15 @@ export function guardarListaPokemones(pokemones, indice) {
   localStorage.setItem(`listaPokemones__${indice}`, JSON.stringify(listaStoragePokemones));
 }
 
+export function analizarLocalStorage(indice) {
+  const keyLista = JSON.parse(localStorage.getItem(`listaPokemones__${indice}`));
+  if (indice === 0) {
+    ocultarBotonAnterior();
+  }
+  if (keyLista != null) {
+    return true;
+  }
+
+  return false;
+}
+
