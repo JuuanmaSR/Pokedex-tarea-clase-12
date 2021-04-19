@@ -12,8 +12,5 @@
     },
     "rules": {
         "linebreak-style": 0 
-    },
-    "[javascript]" :{
-        "editor.defaultFormatter":"dbaeumer.vscode-eslint"
     }
 }
