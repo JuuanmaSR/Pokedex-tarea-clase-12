@@ -9,6 +9,8 @@ import {
 } from './ui.js';
 
 let urlBase = 'https://pokeapi.co/api/v2/pokemon';
+let indiceLista = 0;
+let listaStoragePokemones = [];
 
 export function crearListaPokemones() {
   const listaPokemones = document.querySelector('.list-pokemon__ul');
@@ -75,8 +77,10 @@ function crearSiguienteListaPokemon() {
         if (respuestaJSON.next != null) {
           urlBase = (respuestaJSON.next);
           borrarLista();
+          indiceLista += 1;
           crearListaPokemones();
           mostrarBotonAnterior();
+          listaStoragePokemones = [];
         }
       });
   };
@@ -91,7 +95,9 @@ function crearAnteriorListaPokemon() {
       .then((respuestaJSON) => {
         urlBase = respuestaJSON.previous;
         borrarLista();
+        indiceLista -= 1;
         crearListaPokemones();
+        listaStoragePokemones = [];
       });
   };
 }
