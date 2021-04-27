@@ -12,15 +12,31 @@ let urlBase = 'https://pokeapi.co/api/v2/pokemon';
 let indiceLista = 0;
 let listaStoragePokemones = [];
 
-export function crearListaPokemones() {
+async function informacionApi(url) {
+  const respuesta = await fetch(url);
+  const respuestaJSON = await respuesta.json();
+  if (respuesta.status !== 200) throw Error('La URL no funciona correctamente');
+
+  return respuestaJSON;
+}
+
+async function informacionApiPokemon(namePokemon) {
+  const urlBaseLocal = `https://pokeapi.co/api/v2/pokemon/${namePokemon}`;
+  const respuesta = await fetch(urlBaseLocal);
+  const respuestaJSON = await respuesta.json();
+  if (respuesta.status !== 200) throw Error('La URL con el pokemon seleccionado no funciona correctamente');
+
+  return respuestaJSON;
+}
+
+export async function crearListaPokemones() {
   const listaPokemones = document.querySelector('.list-pokemon__ul');
 
   if (analizarLocalStorage(indiceLista)) {
     const keyLista = JSON.parse(localStorage.getItem(`listaPokemones__${indiceLista}`));
     crearListaPokemonesStorage(keyLista, listaPokemones);
   } else {
-    fetch(urlBase)
-      .then((respuesta) => respuesta.json())
+    await informacionApi(urlBase)
       .then((respuestaJSON) => {
         Object.keys(respuestaJSON.results).forEach((key) => {
           const nombrePokemon = respuestaJSON.results[key].name;
@@ -45,16 +61,16 @@ export function crearListaPokemones() {
         if (respuestaJSON.previous === null) {
           ocultarBotonAnterior();
         }
-      });
+      })
+      .catch((e) => console.log(`Error: ${e}`));
   }
 }
 
 function crearSiguienteListaPokemon() {
   const $siguiente = document.querySelector('#boton-siguiente-list');
 
-  $siguiente.onclick = () => {
-    fetch(urlBase)
-      .then((respuesta) => respuesta.json())
+  $siguiente.onclick = async () => {
+    await informacionApi(urlBase)
       .then((respuestaJSON) => {
         if (respuestaJSON.next != null) {
           urlBase = (respuestaJSON.next);
@@ -64,23 +80,24 @@ function crearSiguienteListaPokemon() {
           mostrarBotonAnterior();
           listaStoragePokemones = [];
         }
-      });
+      })
+      .catch((e) => console.log(`Error: ${e}`));
   };
 }
 
 function crearAnteriorListaPokemon() {
   const $anterior = document.querySelector('#boton-anterior-list');
 
-  $anterior.onclick = () => {
-    fetch(urlBase)
-      .then((respuesta) => respuesta.json())
+  $anterior.onclick = async () => {
+    await informacionApi(urlBase)
       .then((respuestaJSON) => {
         urlBase = respuestaJSON.previous;
         borrarLista();
         indiceLista -= 1;
         crearListaPokemones();
         listaStoragePokemones = [];
-      });
+      })
+      .catch((e) => console.log(`Error: ${e}`));
   };
 }
 
@@ -99,15 +116,14 @@ function aplicarDatosPokemonSeleccionado(name, id, imgFront, imgBack, height, we
   elementHeight.textContent = `${height}`;
   elementWeight.textContent = `${weight}`;
 }
-function obtenerDatosPokemonSeleccionado(namePokemon) {
+async function obtenerDatosPokemonSeleccionado(namePokemon) {
   const nombrePokemon = namePokemon;
   let idPokemon;
   let urlPictureFrontPokemon;
   let urlPictureBackPokemon;
   let heightPokemon = '';
   let weightPokemon = '';
-  fetch(`https://pokeapi.co/api/v2/pokemon/${namePokemon}`)
-    .then((respuesta) => respuesta.json())
+  await informacionApiPokemon(nombrePokemon)
     .then((respuestaJSON) => {
       idPokemon = respuestaJSON.id;
       urlPictureFrontPokemon = respuestaJSON.sprites.front_default;
@@ -116,7 +132,8 @@ function obtenerDatosPokemonSeleccionado(namePokemon) {
       weightPokemon = respuestaJSON.weight;
       aplicarDatosPokemonSeleccionado(nombrePokemon, idPokemon,
         urlPictureFrontPokemon, urlPictureBackPokemon, heightPokemon, weightPokemon);
-    });
+    })
+    .catch((e) => console.log(`Error: ${e}`));
 }
 export function manejarBotonera() {
   crearSiguienteListaPokemon();
