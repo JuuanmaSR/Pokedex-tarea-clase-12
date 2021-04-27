@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-cycle */
 import { guardarListaPokemones, analizarLocalStorage, crearListaPokemonesStorage } from './localStorage.js';
@@ -15,7 +16,7 @@ let listaStoragePokemones = [];
 async function informacionApi(url) {
   const respuesta = await fetch(url);
   const respuestaJSON = await respuesta.json();
-  if (respuesta.status !== 200) throw Error('La URL no funciona correctamente');
+  if (respuesta.status !== 200) throw new Error('La URL no funciona correctamente');
 
   return respuestaJSON;
 }
@@ -24,7 +25,7 @@ async function informacionApiPokemon(namePokemon) {
   const urlBaseLocal = `https://pokeapi.co/api/v2/pokemon/${namePokemon}`;
   const respuesta = await fetch(urlBaseLocal);
   const respuestaJSON = await respuesta.json();
-  if (respuesta.status !== 200) throw Error('La URL con el pokemon seleccionado no funciona correctamente');
+  if (respuesta.status !== 200) throw new Error('La URL con el pokemon seleccionado no funciona correctamente');
 
   return respuestaJSON;
 }
