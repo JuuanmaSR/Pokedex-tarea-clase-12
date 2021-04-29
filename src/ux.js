@@ -1,9 +1,10 @@
+/* eslint-disable import/named */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-console */
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-cycle */
 import { guardarListaPokemones, analizarLocalStorage, crearListaPokemonesStorage } from './localStorage.js';
-import mapearRespuestaApi from './mapeadores.js';
+import mapearRespuestaApi, { mapearListadoPokemones } from './mapeadores.js';
 
 import {
   ocultarBotonAnterior,
@@ -40,32 +41,33 @@ export async function crearListaPokemones() {
     const keyLista = JSON.parse(localStorage.getItem(`listaPokemones__${indiceLista}`));
     crearListaPokemonesStorage(keyLista, listaPokemones);
   } else {
-    await informacionApi(urlBase)
-      .then((respuestaJSON) => {
-        if (respuestaJSON.previous === null) {
-          ocultarBotonAnterior();
-        }
-        Object.keys(respuestaJSON.results).forEach((key) => {
-          const nombrePokemon = respuestaJSON.results[key].name;
-          // localStorage //
-          listaStoragePokemones.push(nombrePokemon);
+    try {
+      const respuestaJSON = await informacionApi(urlBase);
+      const $ListaPokemones = mapearListadoPokemones(respuestaJSON);
+      if ($ListaPokemones.urlAnterior === null) {
+        ocultarBotonAnterior();
+      }
+      Object.keys($ListaPokemones.nombresPokemones).forEach((key) => {
+        const nombrePokemon = $ListaPokemones.nombresPokemones[key];
+        // localStorage //
+        listaStoragePokemones.push(nombrePokemon);
 
-          const newAelement = document.createElement('a');
-          newAelement.className = 'list-pokemon__a';
-          newAelement.href = '#resultado-pokemon';
+        const newAelement = document.createElement('a');
+        newAelement.className = 'list-pokemon__a';
+        newAelement.href = '#resultado-pokemon';
+        const newLi = document.createElement('li');
+        newLi.textContent = nombrePokemon;
+        newLi.id = nombrePokemon;
+        newLi.className = 'pokemon';
+        newAelement.appendChild(newLi);
+        listaPokemones.appendChild(newAelement);
 
-          const newLi = document.createElement('li');
-          newLi.textContent = nombrePokemon;
-          newLi.id = nombrePokemon;
-          newLi.className = 'pokemon';
-          newAelement.appendChild(newLi);
-          listaPokemones.appendChild(newAelement);
-
-          // localStorage //
-          guardarListaPokemones(listaStoragePokemones, indiceLista);
-        });
-      })
-      .catch((e) => console.log(`Error: ${e}`));
+        // localStorage //
+        guardarListaPokemones(listaStoragePokemones, indiceLista);
+      });
+    } catch (error) {
+      console.log(`Error: ${error}`);
+    }
   }
 }
 
