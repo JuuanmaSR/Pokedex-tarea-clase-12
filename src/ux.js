@@ -112,13 +112,14 @@ function aplicarDatosPokemonSeleccionado(datosPokemon) {
   const elementHeight = document.querySelector('.mostrar-pokemon-datos__altura-p');
   const elementWeight = document.querySelector('.mostrar-pokemon-datos__peso-p');
 
-  elementNombre.textContent = name;
-  elementId.textContent = `Nº${id}`;
-  elementImgFront.src = imgFront;
-  elementImgBack.src = imgBack;
-  elementHeight.textContent = `${height}`;
-  elementWeight.textContent = `${weight}`;
+  elementNombre.textContent = datosPokemon.nombre;
+  elementId.textContent = `Nº${datosPokemon.id}`;
+  elementImgFront.src = datosPokemon.fotoFront;
+  elementImgBack.src = datosPokemon.fotoBack;
+  elementHeight.textContent = `${datosPokemon.altura}`;
+  elementWeight.textContent = `${datosPokemon.peso}`;
 }
+
 async function obtenerDatosPokemonSeleccionado(namePokemon) {
   try {
     const respuestaJSON = await informacionApiPokemon(namePokemon);
