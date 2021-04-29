@@ -1,5 +1,6 @@
 /* eslint-disable import/extensions */
-import Pokemon from './clases.js';
+import ListaPokemones from './entidades/ListaPokemon.js';
+import Pokemon from './entidades/pokemon.js';
 
 /* eslint-disable no-unused-vars */
 export default function mapearRespuestaApi(datosApi) {
@@ -19,5 +20,19 @@ export default function mapearRespuestaApi(datosApi) {
     fotoBack,
     altura,
     peso,
+  );
+}
+
+export function mapearListadoPokemones(datosApi) {
+  const {
+    next: urlSiguiente,
+    previous: urlAnterior,
+    results: resultados,
+  } = datosApi;
+
+  return new ListaPokemones(
+    urlSiguiente,
+    urlAnterior,
+    resultados.map((pokemon) => pokemon.name),
   );
 }
