@@ -104,7 +104,7 @@ function crearAnteriorListaPokemon() {
   };
 }
 
-function aplicarDatosPokemonSeleccionado(name, id, imgFront, imgBack, height, weight) {
+function aplicarDatosPokemonSeleccionado(datosPokemon) {
   const elementNombre = document.querySelector('.mostrar-pokemon__header-p-name');
   const elementId = document.querySelector('.mostrar-pokemon__header-p-id');
   const elementImgFront = document.querySelector('.mostrar-pokemon-img__front');
@@ -120,24 +120,13 @@ function aplicarDatosPokemonSeleccionado(name, id, imgFront, imgBack, height, we
   elementWeight.textContent = `${weight}`;
 }
 async function obtenerDatosPokemonSeleccionado(namePokemon) {
-  const nombrePokemon = namePokemon;
-  let idPokemon;
-  let urlPictureFrontPokemon;
-  let urlPictureBackPokemon;
-  let heightPokemon = '';
-  let weightPokemon = '';
-  await informacionApiPokemon(nombrePokemon)
-    .then((respuestaJSON) => {
-      idPokemon = respuestaJSON.id;
-      urlPictureFrontPokemon = respuestaJSON.sprites.front_default;
-      urlPictureBackPokemon = respuestaJSON.sprites.back_default;
-      heightPokemon = respuestaJSON.height;
-      weightPokemon = respuestaJSON.weight;
-      aplicarDatosPokemonSeleccionado(nombrePokemon, idPokemon,
-        urlPictureFrontPokemon, urlPictureBackPokemon, heightPokemon, weightPokemon);
-    })
-    .catch((e) => console.log(`Error: ${e}`));
+  try {
+    const respuestaJSON = await informacionApiPokemon(namePokemon);
+    const pokemon = mapearRespuestaApi(respuestaJSON);
+    aplicarDatosPokemonSeleccionado(pokemon);
+  } catch (error) { console.log(`Error: ${error}`); }
 }
+
 export function manejarBotonera() {
   crearSiguienteListaPokemon();
   crearAnteriorListaPokemon();
