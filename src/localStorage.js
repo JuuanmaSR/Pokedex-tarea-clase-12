@@ -24,10 +24,6 @@ export function crearListaPokemonesStorage(pokemones, dondeMostrarPokemones) {
   for (let i = 0; i < listaPokemones.length; i += 1) {
     const nombrePokemon = listaPokemones[i];
 
-    const newAelement = document.createElement('a');
-    newAelement.className = 'list-pokemon__a';
-    newAelement.href = '#resultado-pokemon';
-
     dondeMostrarPokemones(nombrePokemon, dondeMostrarPokemones);
   }
 }
