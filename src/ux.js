@@ -11,6 +11,7 @@ import {
   mostrarBotonAnterior,
   borrarLista,
   mostrarResultadoPokemon,
+  mostrarNombresPokemon,
 } from './ui.js';
 
 let urlBase = 'https://pokeapi.co/api/v2/pokemon';
@@ -47,21 +48,12 @@ export async function crearListaPokemones() {
       if ($ListaPokemones.urlAnterior === null) {
         ocultarBotonAnterior();
       }
+
       Object.keys($ListaPokemones.nombresPokemones).forEach((key) => {
         const nombrePokemon = $ListaPokemones.nombresPokemones[key];
         // localStorage //
         listaStoragePokemones.push(nombrePokemon);
-
-        const newAelement = document.createElement('a');
-        newAelement.className = 'list-pokemon__a';
-        newAelement.href = '#resultado-pokemon';
-        const newLi = document.createElement('li');
-        newLi.textContent = nombrePokemon;
-        newLi.id = nombrePokemon;
-        newLi.className = 'pokemon';
-        newAelement.appendChild(newLi);
-        listaPokemones.appendChild(newAelement);
-
+        mostrarNombresPokemon(nombrePokemon, listaPokemones);
         // localStorage //
         guardarListaPokemones(listaStoragePokemones, indiceLista);
       });

@@ -34,3 +34,17 @@ export function mostrarResultadoPokemon() {
 export function mostrarResultado() {
   manejarClicks();
 }
+
+export function mostrarNombresPokemon(nombrePokemon, dondeMostrarNombres) {
+  const listaPokemones = dondeMostrarNombres;
+
+  const newAelement = document.createElement('a');
+  newAelement.className = 'list-pokemon__a';
+  newAelement.href = '#resultado-pokemon';
+  const newLi = document.createElement('li');
+  newLi.textContent = nombrePokemon;
+  newLi.id = nombrePokemon;
+  newLi.className = 'pokemon';
+  newAelement.appendChild(newLi);
+  listaPokemones.appendChild(newAelement);
+}
