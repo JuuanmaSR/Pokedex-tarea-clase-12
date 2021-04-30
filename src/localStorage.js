@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-cycle */
-import { ocultarBotonAnterior } from './ui.js';
+import { mostrarNombresPokemon, ocultarBotonAnterior } from './ui.js';
 
 export function guardarListaPokemones(pokemones, indice) {
   const listaStoragePokemones = pokemones;
@@ -24,6 +24,6 @@ export function crearListaPokemonesStorage(pokemones, dondeMostrarPokemones) {
   for (let i = 0; i < listaPokemones.length; i += 1) {
     const nombrePokemon = listaPokemones[i];
 
-    dondeMostrarPokemones(nombrePokemon, dondeMostrarPokemones);
+    mostrarNombresPokemon(nombrePokemon, dondeMostrarPokemones);
   }
 }
