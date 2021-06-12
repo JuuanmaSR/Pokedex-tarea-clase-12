@@ -18,7 +18,7 @@ let urlBase = 'https://pokeapi.co/api/v2/pokemon';
 let indiceLista = 0;
 let listaStoragePokemones = [];
 
-export async function informacionApi(url) {
+async function informacionApi(url) {
   const respuesta = await fetch(url);
   const respuestaJSON = await respuesta.json();
   if (respuesta.status !== 200) throw new Error('La URL no funciona correctamente');
@@ -53,6 +53,7 @@ export async function crearListaPokemones() {
         const nombrePokemon = $ListaPokemones.nombresPokemones[key];
         // localStorage //
         listaStoragePokemones.push(nombrePokemon);
+        // UI //
         mostrarNombresPokemon(nombrePokemon, listaPokemones);
         // localStorage //
         guardarListaPokemones(listaStoragePokemones, indiceLista);
