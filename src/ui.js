@@ -19,7 +19,7 @@ export function mostrarBotonAnterior() {
 }
 
 export function borrarLista() {
-  const liElements = document.querySelectorAll('.list-pokemon__ul li');
+  const liElements = document.querySelectorAll('.list-pokemon__ul a');
 
   liElements.forEach((li) => {
     li.remove();
