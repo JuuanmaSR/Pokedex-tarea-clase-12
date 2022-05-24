@@ -58,6 +58,8 @@ body {
     display       : flex;
     flex-direction: column;
     text-align    : center;
+    height: max-content;
+
 }
 
 .list-pokemon__h1 {
@@ -87,23 +89,24 @@ body {
     flex-direction : column;
     justify-content: space-between;
     align-items    : center;
+    list-style: none;
 }
 
-.list-pokemon__ul li {
+.list-pokemon__ul a {
     display      : block;
     font-family  : 'Lato', sans-serif;
     font-weight  : 400;
-    font-size    : 1.6em;
+    font-size    : 1.2em;
     line-height  : 1.4em;
-    padding      : 5px;
+    padding      : 6px;
     margin-left  : 2%;
     margin-right : 2%;
+    margin-bottom: 2%;
     color        : #02A1E9;
     text-align   : left;
-    border-bottom: 1px solid #02A1E9;
 }
 
-.list-pokemon__ul li:active {
+.list-pokemon__ul a:active {
     color: #96d6f2;
 }
 
