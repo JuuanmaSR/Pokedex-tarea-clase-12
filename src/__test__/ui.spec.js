@@ -21,7 +21,7 @@ test('comprobar que se muestre un boton', () => {
 test('comprobar que una lista se borre', () => {
   document.body.innerHTML = '<ul class="list-pokemon__ul"><li>hola</li><li>chau</li><li>adios</li></ul>';
   borrarLista();
-  expect(document.querySelectorAll('.list-pokemon__ul li').length).toBe(0);
+  expect(document.querySelectorAll('.list-pokemon__ul a').length).toBe(0);
 });
 
 test('comprobar que se muestre un resultado', () => {
