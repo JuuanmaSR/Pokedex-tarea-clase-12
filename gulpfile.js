@@ -28,7 +28,7 @@ function copiarCss() {
 }
 
 function copiarJs() {
-    return src('src/**/*.js')
+    return src('./src/**/*.js')
         .pipe(dest(outputJs));
 }
 
@@ -42,7 +42,7 @@ function minificarCss() {
 }
 
 function minificarJs() {
-    return src('src/**/*.js')
+    return src('./src/**/*.js')
         .pipe(uglify({
             mangle: true,
         }))
