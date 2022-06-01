@@ -1,1 +1,0 @@
-export default class ListaPokemones{constructor(e,s,t){this.urlSiguiente=e,this.urlAnterior=s,this.nombresPokemones=t}}

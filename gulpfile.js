@@ -28,7 +28,7 @@ function copiarCss() {
 }
 
 function copiarJs() {
-    return src('src/**/*.js')
+    return src('./src/**/*.js')
         .pipe(dest(outputJs));
 }
 
@@ -42,7 +42,7 @@ function minificarCss() {
 }
 
 function minificarJs() {
-    return src('src/**/*.js')
+    return src('./src/**/*.js')
         .pipe(uglify({
             mangle: true,
         }))
@@ -53,6 +53,12 @@ function copiarHtml() {
     return src('index.html')
         .pipe(dest('./dist'));
 }
+
+function copiarImagenes() {
+    return src('./src/images/**')
+        .pipe(dest('./dist/images'));
+}
+
 function iniciarServidor() {
     return src('dist')
         .pipe(webserver({
@@ -69,12 +75,12 @@ const correrTareasJsDev = series([limpiarJs, copiarJs]);
 
 const tareasDev = series(
     [parallel(
-        [correrTareasJsDev, correrTareasCssDev, copiarHtml],
+        [correrTareasJsDev, correrTareasCssDev, copiarHtml, copiarImagenes],
     ), iniciarServidor],
 );
 const tareasProd = series(
     [parallel(
-        [correrTareasJs, correrTareasCss, copiarHtml],
+        [correrTareasJs, correrTareasCss, copiarHtml, copiarImagenes],
     ), iniciarServidor],
 );
 
