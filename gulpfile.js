@@ -8,8 +8,8 @@ const cleanCSS = require('gulp-clean-css');
 const webserver = require('gulp-webserver');
 const uglify = require('gulp-uglify');
 
-const outputCss = './public/css';
-const outputJs = './public/js';
+const outputCss = './dist/css';
+const outputJs = './dist/js';
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 function limpiarCss() {
@@ -51,19 +51,16 @@ function minificarJs() {
 
 function copiarHtml() {
     return src('index.html')
-        .pipe(dest('./public'));
+        .pipe(dest('./dist'));
 }
-<<<<<<< HEAD
 
 function copiarImagenes() {
     return src('./src/images/**')
-        .pipe(dest('./public/images'));
+        .pipe(dest('./dist/images'));
 }
 
-=======
->>>>>>> parent of 6c134b7 (Update gitignore)
 function iniciarServidor() {
-    return src('./public')
+    return src('./dist')
         .pipe(webserver({
             livereload: true,
             open: false,
@@ -83,13 +80,8 @@ const tareasDev = series(
 );
 const tareasProd = series(
     [parallel(
-<<<<<<< HEAD
         [correrTareasJs, correrTareasCss, copiarHtml, copiarImagenes],
-    )],
-=======
-        [correrTareasJs, correrTareasCss, copiarHtml],
     ), iniciarServidor],
->>>>>>> parent of 6c134b7 (Update gitignore)
 );
 
 watch(['./src/**/*.js'], isDevelopment ? correrTareasJsDev : correrTareasJs);

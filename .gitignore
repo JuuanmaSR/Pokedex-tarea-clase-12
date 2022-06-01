@@ -74,9 +74,3 @@ typings/
 
 # FuseBox cache
 .fusebox/
-<<<<<<< HEAD
-
-dist/*
-public/*
-=======
->>>>>>> parent of 6c134b7 (Update gitignore)
