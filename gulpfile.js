@@ -81,7 +81,7 @@ const tareasDev = series(
 const tareasProd = series(
     [parallel(
         [correrTareasJs, correrTareasCss, copiarHtml, copiarImagenes],
-    ), iniciarServidor],
+    )],
 );
 
 watch(['./src/**/*.js'], isDevelopment ? correrTareasJsDev : correrTareasJs);
