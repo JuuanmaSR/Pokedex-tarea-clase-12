@@ -28,7 +28,7 @@ function copiarCss() {
 }
 
 function copiarJs() {
-    return src('./src/**/*.js')
+    return src('src/**/*.js')
         .pipe(dest(outputJs));
 }
 
@@ -42,7 +42,7 @@ function minificarCss() {
 }
 
 function minificarJs() {
-    return src('./src/**/*.js')
+    return src('src/**/*.js')
         .pipe(uglify({
             mangle: true,
         }))
@@ -53,12 +53,15 @@ function copiarHtml() {
     return src('index.html')
         .pipe(dest('./public'));
 }
+<<<<<<< HEAD
 
 function copiarImagenes() {
     return src('./src/images/**')
         .pipe(dest('./public/images'));
 }
 
+=======
+>>>>>>> parent of 6c134b7 (Update gitignore)
 function iniciarServidor() {
     return src('./public')
         .pipe(webserver({
@@ -75,13 +78,18 @@ const correrTareasJsDev = series([limpiarJs, copiarJs]);
 
 const tareasDev = series(
     [parallel(
-        [correrTareasJsDev, correrTareasCssDev, copiarHtml, copiarImagenes],
+        [correrTareasJsDev, correrTareasCssDev, copiarHtml],
     ), iniciarServidor],
 );
 const tareasProd = series(
     [parallel(
+<<<<<<< HEAD
         [correrTareasJs, correrTareasCss, copiarHtml, copiarImagenes],
     )],
+=======
+        [correrTareasJs, correrTareasCss, copiarHtml],
+    ), iniciarServidor],
+>>>>>>> parent of 6c134b7 (Update gitignore)
 );
 
 watch(['./src/**/*.js'], isDevelopment ? correrTareasJsDev : correrTareasJs);

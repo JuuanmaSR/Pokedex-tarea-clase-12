@@ -1,0 +1,1 @@
+export default class Pokemon{constructor(o,t,s,e,i,r){this.id=o,this.nombre=t,this.fotoFront=s,this.fotoBack=e,this.altura=i,this.peso=r}saludar(){console.log("Hola mi nombre es "+this.nombre)}}
