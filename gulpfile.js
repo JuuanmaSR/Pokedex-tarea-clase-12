@@ -8,8 +8,8 @@ const cleanCSS = require('gulp-clean-css');
 const webserver = require('gulp-webserver');
 const uglify = require('gulp-uglify');
 
-const outputCss = './dist/css';
-const outputJs = './dist/js';
+const outputCss = './public/css';
+const outputJs = './public/js';
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 function limpiarCss() {
@@ -51,16 +51,16 @@ function minificarJs() {
 
 function copiarHtml() {
     return src('index.html')
-        .pipe(dest('./dist'));
+        .pipe(dest('./public'));
 }
 
 function copiarImagenes() {
     return src('./src/images/**')
-        .pipe(dest('./dist/images'));
+        .pipe(dest('./public/images'));
 }
 
 function iniciarServidor() {
-    return src('dist')
+    return src('./public')
         .pipe(webserver({
             livereload: true,
             open: false,
