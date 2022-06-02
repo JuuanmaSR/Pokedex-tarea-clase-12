@@ -75,3 +75,5 @@ dist
 
 # FuseBox cache
 .fusebox/
+# Local Netlify folder
+.netlify
