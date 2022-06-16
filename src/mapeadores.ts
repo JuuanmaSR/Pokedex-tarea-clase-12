@@ -3,7 +3,9 @@ import ListaPokemones from './entidades/ListaPokemon.js';
 import Pokemon from './entidades/pokemon.js';
 
 /* eslint-disable no-unused-vars */
-export default function mapearRespuestaApi(datosApi) {
+export default function mapearRespuestaApi(datosApi: {
+  id: number, name: string, sprites: { front_default: string, back_default: string }, height: number, weight: number
+}): Pokemon {
   const {
     id,
     name: nombre,
@@ -23,7 +25,7 @@ export default function mapearRespuestaApi(datosApi) {
   );
 }
 
-export function mapearListadoPokemones(datosApi) {
+export function mapearListadoPokemones(datosApi: { next: string, previous: string, results: [] }): ListaPokemones {
   const {
     next: urlSiguiente,
     previous: urlAnterior,
@@ -33,6 +35,6 @@ export function mapearListadoPokemones(datosApi) {
   return new ListaPokemones(
     urlSiguiente,
     urlAnterior,
-    resultados.map((pokemon) => pokemon.name),
+    resultados.map((pokemon: { name: string }) => pokemon.name),
   );
 }
