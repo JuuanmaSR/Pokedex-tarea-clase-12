@@ -2,13 +2,13 @@
 /* eslint-disable import/no-cycle */
 import { mostrarNombresPokemon, ocultarBotonAnterior } from './ui.js';
 
-export function guardarListaPokemones(pokemones, indice) {
+export function guardarListaPokemones(pokemones: string[], indice: number) {
   const listaStoragePokemones = pokemones;
   localStorage.setItem(`listaPokemones__${indice}`, JSON.stringify(listaStoragePokemones));
 }
 
-export function analizarLocalStorage(indice) {
-  const keyLista = JSON.parse(localStorage.getItem(`listaPokemones__${indice}`));
+export function analizarLocalStorage(indice: number) {
+  const keyLista = JSON.parse(localStorage.getItem(`listaPokemones__${indice}`)!);
   if (indice === 0) {
     ocultarBotonAnterior();
   }
@@ -19,7 +19,7 @@ export function analizarLocalStorage(indice) {
   return false;
 }
 
-export function crearListaPokemonesStorage(pokemones, dondeMostrarPokemones) {
+export function crearListaPokemonesStorage(pokemones: string[], dondeMostrarPokemones: HTMLUListElement) {
   const listaPokemones = pokemones;
   for (let i = 0; i < listaPokemones.length; i += 1) {
     const nombrePokemon = listaPokemones[i];
